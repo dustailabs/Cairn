@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cairn"
+version = "0.1.0"
+description = "Agentic RAG: hybrid retrieval (BM25 + vectors) fused with RRF, answered by a Planner/Researcher/Critic CrewAI crew with citation validation."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "Dust AI Labs" }]
+dependencies = [
+    "numpy>=1.26",
+    "rank-bm25>=0.2.2",
+    "crewai>=0.86.0",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "pydantic>=2.6",
+]
+
+[project.optional-dependencies]
+semantic = ["sentence-transformers>=2.6"]
+dev = [
+    "pytest>=8.0",
+    "httpx>=0.27",
+    "ruff>=0.4",
+]
+
+[tool.setuptools.packages.find]
+include = ["cairn*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
